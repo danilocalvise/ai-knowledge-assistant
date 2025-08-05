@@ -1,27 +1,27 @@
 # vector_store.py
 import numpy as np
-from sentence_transformers import SentenceTransformer
+from embeddings import embed_text
 from typing import List
 
 class InMemoryStore:
-    def __init__(self, model_name="all-MiniLM-L6-v2"):
-        self.embedder = SentenceTransformer(model_name)
+    def __init__(self):
         self.docs: List[str] = []
-        self.embeddings: np.ndarray = np.empty((0, self.embedder.get_sentence_embedding_dimension()))
+        self.embeddings: np.ndarray = np.empty((0,))  # shape later
 
-    def ingest(self, texts: List[str]):
-        embeddings = self.embedder.encode(texts)
+    async def ingest(self, texts: List[str]) -> int:
+        embs = await embed_text(texts)
+        vecs = np.array(embs)
         self.docs.extend(texts)
         if self.embeddings.size == 0:
-            self.embeddings = embeddings
+            self.embeddings = vecs
         else:
-            self.embeddings = np.vstack((self.embeddings, embeddings))
+            self.embeddings = np.vstack((self.embeddings, vecs))
         return len(texts)
 
-    def query(self, text: str, top_k=3):
-        q_emb = self.embedder.encode([text])[0]
-        sims = (self.embeddings @ q_emb) / (
-            np.linalg.norm(self.embeddings, axis=1) * np.linalg.norm(q_emb)
-        )
+    async def query(self, text: str, top_k: int = 3):
+        emb = await embed_text(text)
+        emb = np.array(emb)
+        # compute cosine similarity
+        sims = (self.embeddings @ emb) / (np.linalg.norm(self.embeddings, axis=1) * np.linalg.norm(emb))
         top_ids = np.argsort(-sims)[:top_k]
         return [(self.docs[i], float(sims[i])) for i in top_ids]
