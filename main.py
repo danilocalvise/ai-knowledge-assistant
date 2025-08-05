@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
 from vector_store import InMemoryStore
+from llm_service import generate_answer
 
 class IngestRequest(BaseModel):
     documents: list[str]
@@ -19,8 +20,10 @@ async def ingest(req: IngestRequest):
 
 @app.post("/api/query")
 async def query(req: QueryRequest):
-    results = await store.query(req.query, req.top_k)
-    return {"results": [{"doc": doc, "score": score} for doc, score in results]}
+    docs = await store.query(req.query, req.top_k)
+    snippets = [doc for doc, _ in docs]
+    answer = await generate_answer(snippets, req.query)
+    return {"results": docs, "answer": answer}
 
 @app.get("/api/health")
 async def health():
