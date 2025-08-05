@@ -2,3 +2,5 @@
 __pycache__/
 .vscode/
 .env
+*.pyc
+.DS_Store
