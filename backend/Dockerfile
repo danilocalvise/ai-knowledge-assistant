@@ -5,16 +5,13 @@ FROM python:3.10-slim
 WORKDIR /app
 
 # Copy only requirements.txt first
-# COPY ./backend/requirements.txt .
-COPY requirements.txt .
+COPY ./backend/requirements.txt .
 
 # Install dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy the rest of the application files
-# COPY ./backend/app .
-# Copy the app directory
-COPY app/ /app/app/
+COPY ./backend/app .
 
 # Set Python path
 ENV PYTHONPATH=/app
