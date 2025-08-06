@@ -3,7 +3,7 @@ import re
 import tiktoken
 from typing import List, Dict, Optional
 from dataclasses import dataclass
-from .file_processor import ContentChunk, DocumentMetadata
+from app.file_processor import ContentChunk, DocumentMetadata
 
 @dataclass
 class EnhancedChunk:

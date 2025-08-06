@@ -1,9 +1,9 @@
 # vector_store.py
 import numpy as np
-from .embeddings import embed_text
+from app.embeddings import embed_text
 from typing import List, Dict, Optional, Any
 from collections import defaultdict
-from .chunking_service import EnhancedChunk
+from app.chunking_service import EnhancedChunk
 
 class InMemoryStore:
     def __init__(self):

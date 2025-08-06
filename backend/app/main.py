@@ -1,10 +1,10 @@
 from fastapi import FastAPI, UploadFile, File, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
-from .vector_store import InMemoryStore
-from .llm_service import generate_answer
-from .file_processor import FileProcessor
-from .chunking_service import ChunkingService
+from app.vector_store import InMemoryStore
+from app.llm_service import generate_answer
+from app.file_processor import FileProcessor
+from app.chunking_service import ChunkingService
 import tempfile
 import os
 from typing import List, Optional
