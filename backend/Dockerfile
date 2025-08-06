@@ -5,14 +5,19 @@ FROM python:3.10-slim
 WORKDIR /app
 
 # Copy only requirements.txt first
-COPY ./backend/requirements.txt .
+# COPY ./backend/requirements.txt .
+COPY requirements.txt .
 
 # Install dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy the rest of the application files
 # COPY ./backend/app .
-COPY . .
+# Copy the app directory
+COPY app/ /app/app/
+
+# Set Python path
+ENV PYTHONPATH=/app
 
 # Expose the application port
 EXPOSE 8000
