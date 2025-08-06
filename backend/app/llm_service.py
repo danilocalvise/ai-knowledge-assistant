@@ -1,5 +1,6 @@
 import os, httpx
 
+
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 GPT_MODEL = "gpt-4o"  # or gpt-3.5-turbo
 

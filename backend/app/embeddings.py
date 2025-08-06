@@ -5,7 +5,7 @@ from pathlib import Path
 from dotenv import load_dotenv
 
 # Get the base directory of the project
-BASE_DIR = Path(__file__).parent
+BASE_DIR = Path(__file__).parent.parent
 
 # Load environment variables from .env file if it exists
 env_path = os.path.join(BASE_DIR, '.env')
