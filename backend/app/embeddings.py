@@ -18,6 +18,8 @@ if not OPENAI_API_KEY:
 EMBEDDING_MODEL = "text-embedding-3-small"
 
 async def embed_text(texts: list[str]) -> list[list[float]]:
+    if not OPENAI_API_KEY:
+        raise ValueError("OpenAI API key is not configured. Please set the OPENAI_API_KEY environment variable.")
     async with httpx.AsyncClient() as client:
         resp = await client.post(
             "https://api.openai.com/v1/embeddings",
