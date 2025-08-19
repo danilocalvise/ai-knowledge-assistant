@@ -27,15 +27,11 @@ app = FastAPI(title="AI Knowledge Assistant API", version="1.0.0")
 # Add CORS middleware
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "http://localhost:3000",
-        "https://ai-knowledge-assistant-roan.vercel.app",
-        # Add any other frontend URLs you need
-    ],
-    allow_credentials=True,
-    allow_methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allow_origins=["*"],  # Allow all origins
+    allow_credentials=False,  # Set to False since we're using credentials: 'omit'
+    allow_methods=["*"],
     allow_headers=["*"],
-    expose_headers=["*"]
+    max_age=3600,  # Cache preflight requests for 1 hour
 )
 
 store = InMemoryStore()

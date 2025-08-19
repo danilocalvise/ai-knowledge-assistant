@@ -10,9 +10,9 @@ export async function POST(req: NextRequest) {
       body: formData,
       headers: {
         'Accept': 'application/json',
-        'Origin': process.env.NEXT_PUBLIC_URL || 'http://localhost:3000',
       },
-      credentials: 'include',
+      mode: 'cors',
+      credentials: 'omit',
     });
 
     if (!response.ok) {
