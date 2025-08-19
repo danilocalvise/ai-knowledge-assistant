@@ -174,13 +174,13 @@ function ChatBox() {
               >
                 Give me a summary of the document
               </button>
-              {/* <button
-                onClick={() => setInput('How do I upload documents?')}
+              <button
+                onClick={() => setInput('What is the topic of the document about?')}
                 className="px-3 py-1.5 bg-accent text-accent-foreground text-xs rounded-lg hover:bg-accent/80 transition-colors"
               >
-                How to upload documents?
+                What is the topic of the document about?
               </button>
-              <button
+              {/* <button
                 onClick={() => setInput('Explain quantum computing in simple terms')}
                 className="px-3 py-1.5 bg-accent text-accent-foreground text-xs rounded-lg hover:bg-accent/80 transition-colors"
               >
