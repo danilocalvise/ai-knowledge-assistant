@@ -4,9 +4,9 @@ export const runtime = 'edge';
 
 export async function POST(req: NextRequest) {
   const { query, top_k } = await req.json();
-  const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL || 'http://localhost:8000/api/query';
+  const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL || 'http://localhost:8000';
 
-  const backendRes = await fetch(backendUrl, {
+  const backendRes = await fetch(`${backendUrl}/api/query`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ query, top_k }),

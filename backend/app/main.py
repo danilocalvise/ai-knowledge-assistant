@@ -40,10 +40,25 @@ chunking_service = ChunkingService()
 @app.post("/api/upload", response_model=UploadResponse)
 async def upload_file(file: UploadFile = File(...)):
     """Upload and process a file (PDF, DOCX, Markdown, or text)"""
+    temp_file = None
     try:
         # Validate file type
         if not file.filename:
             raise HTTPException(status_code=400, detail="No filename provided")
+        
+        # Validate file extension
+        allowed_extensions = {'.pdf', '.docx', '.doc', '.txt', '.md'}
+        file_ext = os.path.splitext(file.filename)[1].lower()
+        if file_ext not in allowed_extensions:
+            raise HTTPException(
+                status_code=400, 
+                detail=f"Unsupported file type. Allowed types: {', '.join(allowed_extensions)}"
+            )
+        if file_ext not in allowed_extensions:
+            raise HTTPException(
+                status_code=400,
+                detail=f"Unsupported file type. Allowed types: {', '.join(allowed_extensions)}"
+            )
         
         # Save uploaded file temporarily
         with tempfile.NamedTemporaryFile(delete=False, suffix=f"_{file.filename}") as temp_file:

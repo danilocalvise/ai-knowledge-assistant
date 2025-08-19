@@ -1,4 +1,5 @@
 import ChatBoxSuspense from "@/components/ChatBox";
+import FileUpload from "@/components/FileUpload";
 
 export default function Home() {
   return (
@@ -47,6 +48,11 @@ export default function Home() {
               Upload your documents and get instant, intelligent answers. Our AI understands context 
               and provides accurate responses based on your content.
             </p>
+
+            {/* Upload Section */}
+            <div className="max-w-2xl mx-auto mb-16">
+              <FileUpload />
+            </div>
 
             {/* Features */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-12 max-w-3xl mx-auto">
