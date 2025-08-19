@@ -169,12 +169,12 @@ function ChatBox() {
           {messages.length === 1 && (
             <>
               <button
-                onClick={() => setInput('What can you help me with?')}
+                onClick={() => setInput('Give me a summary of the document')}
                 className="px-3 py-1.5 bg-accent text-accent-foreground text-xs rounded-lg hover:bg-accent/80 transition-colors"
               >
-                What can you help with?
+                Give me a summary of the document
               </button>
-              <button
+              {/* <button
                 onClick={() => setInput('How do I upload documents?')}
                 className="px-3 py-1.5 bg-accent text-accent-foreground text-xs rounded-lg hover:bg-accent/80 transition-colors"
               >
@@ -185,7 +185,7 @@ function ChatBox() {
                 className="px-3 py-1.5 bg-accent text-accent-foreground text-xs rounded-lg hover:bg-accent/80 transition-colors"
               >
                 Explain quantum computing
-              </button>
+              </button> */}
             </>
           )}
         </div>
