@@ -9,8 +9,14 @@ function ChatBox() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const chatEndRef = useRef(null);
+  const hasAutoScrolledOnceRef = useRef(false);
 
   useEffect(() => {
+    // Avoid scrolling on first render so the page starts at the top
+    if (!hasAutoScrolledOnceRef.current) {
+      hasAutoScrolledOnceRef.current = true;
+      return;
+    }
     chatEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages]);
 
@@ -135,7 +141,7 @@ function ChatBox() {
               value={input}
               onChange={(e) => setInput(e.target.value)}
               disabled={isLoading}
-              autoFocus
+              // Avoid auto focusing on initial load to prevent scrolling to bottom
             />
             <div className="absolute right-3 top-1/2 -translate-y-1/2">
               <div className="text-xs text-muted-foreground">
