@@ -54,6 +54,11 @@ export default function FileUpload() {
 
       const data: UploadResponse = await response.json();
       setUploadStatus(data);
+      // Smoothly scroll to chat after a short delay to allow UI to update
+      setTimeout(() => {
+        const chat = document.getElementById('chat-section');
+        chat?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 300);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Upload failed');
     } finally {

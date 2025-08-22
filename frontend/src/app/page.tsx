@@ -1,9 +1,11 @@
 import ChatBoxSuspense from "@/components/ChatBox";
 import FileUpload from "@/components/FileUpload";
+import ScrollToTop from "@/components/ScrollToTop";
 
 export default function Home() {
   return (
     <main className="min-h-screen bg-gradient-to-br from-background via-muted/20 to-background">
+      <ScrollToTop />
       {/* Header */}
       <header className="relative z-10 border-b border-border/40 bg-background/80 backdrop-blur-sm">
         <div className="container mx-auto px-4 py-4">
@@ -91,7 +93,7 @@ export default function Home() {
       </section>
 
       {/* Chat Section */}
-      <section className="relative py-16">
+      <section id="chat-section" className="relative py-16">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-8">
